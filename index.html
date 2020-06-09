@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" tyle="text/css" href="style.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	</head>
 	<body onload='fixPosition()'>
 		<div id="container" style='left: 100px'>
+			<div id='header'>
+				<div id='setting'></div>
+				<span id='title'>Slide the Pic</span>
+			</div>
 			<div id="menu">
-				<div class="button">Main Pack</div>
-				<div class="button">Famouse Paintings</div>
-				<div class="button">Animals</div>
-				<div class="button">Portraits</div>
-				<div class="button">Landmarks</div>
+				<div class="button" style='top: 150px'>Main Pack</div>
+				<div class="button" style='top: 350px'>Famouse Paintings</div>
+				<div class="button" style='top: 550px'>Animals</div>
+				<div class="button" style='top: 750px'>Portraits</div>
+				<div class="button" style='top: 950px'>Landmarks</div>
 			</div>
 		</div>
 	</body>

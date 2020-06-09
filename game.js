@@ -8,3 +8,13 @@ function fixPosition() {
 	if (height > 1600) container.style.top = (height - 1600)/3 + 'px';
 	else container.style.top = '0px';
 }
+var buttons = document.getElementsByClassName('button');
+$(function() {
+	$("div.button").bind("taphold", function(event) {
+		$(event.target).addClass("taphold");
+	});
+	$("div.button").bind("tap", function(event) {
+		console.log('tap');
+	})
+});
+
