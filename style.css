@@ -1,0 +1,15 @@
+#container {
+	width: 900px;
+	height: 1600px;
+	background: #FFF4C3;
+	border-radius: 20px;
+	box-shadow: 0 0 10px 4px dimgrey;
+	position: absolute;
+}
+#menu {
+	left: ;
+	background: #FFDB9C;
+	border: 4px solid blue;
+	border-radius: 5px;
+	position: absolute;
+}
