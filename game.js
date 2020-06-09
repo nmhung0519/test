@@ -3,13 +3,16 @@ var buttons = document.getElementsByClassName('button');
 $(document).taphold(function(event) {
 	
 });
-$(function() {
-	$("div.button").bind("taphold", function(event) {
-		event.preventDefault();
-		$(event.target).addClass("taphold");
-	})
-	$("div.button").bind("tap", function(event) {
-		event.preventDefault();
-		let lv = event.target.id;
-	})
-});
+$("div.button").bind("touchstart", function(event) {
+	event.preventDefault();
+	event.target.style.transform = 'scale(0.95)';
+})
+$("div.button").bind("tap", function(event) {
+	event.preventDefault();
+	let lv = event.target.id;
+	console.log(lv);
+	$(event.target).addClass("taphold");
+})
+$("div.button").bind("touchmove", function(event) {
+	console.log(event.clientX);
+})
