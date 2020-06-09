@@ -36,6 +36,7 @@ div.button {
 	font-size: 200%;
 	width: 80%;
 	height: 12%;
+	left: 10%;
 	background: green;
 	transition: 1s;
 	border-radius: 10px;
