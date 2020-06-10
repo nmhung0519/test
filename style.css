@@ -39,14 +39,10 @@ div.button {
 	height: 12%;
 	left: 10%;
 	background: green;
-	transition: 1s;
 	border-radius: 10px;
+	transition: 1s;
 	-webkit-transition: 1s;
 	position: absolute;
-}
-div.button.taphold{
-	transform: scale(0.95);
-	-webkit-transform: scale(0.95),;
 }
 #setting {
 	width: 40px;
@@ -56,4 +52,9 @@ div.button.taphold{
 	background-image: url('png/setting.png');
 	background-size: cover; 
 	position: absolute;
+}
+div.picture {
+	width: 40%;
+	height: initial;
+	outline: 5px solid white;
 }

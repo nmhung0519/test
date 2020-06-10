@@ -8,12 +8,18 @@ $("div.button").bind("touchstart", function(event) {
 	event.target.style.transform = 'scale(0.95)';
 	event.target.style.webkitTransform = 'scale(0.95)';
 })
-$("div.button").bind("tap", function(event) {
+$("div.button").bind("touchend", function(event) {
 	event.preventDefault();
 	let lv = event.target.id;
 	console.log(lv);
-	$(event.target).addClass("taphold");
+	event.target.style.transform = 'scale(0.95)';
+	event.target.style.webkitTransform = 'scale(0.95)';
+	event.target.style.background = 'blue';
+	select(lv);
 })
 $("div.button").bind("touchmove", function(event) {
 	console.log(event.clientX);
 })
+function select(lv) {
+
+}
