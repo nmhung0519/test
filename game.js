@@ -6,6 +6,7 @@ $(document).taphold(function(event) {
 $("div.button").bind("touchstart", function(event) {
 	event.preventDefault();
 	event.target.style.transform = 'scale(0.95)';
+	event.target.style.webkitTransform = 'scale(0.95)';
 })
 $("div.button").bind("tap", function(event) {
 	event.preventDefault();
