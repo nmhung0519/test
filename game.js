@@ -4,6 +4,7 @@ $(document).taphold(function(event) {
 	
 });
 $("div.button").bind("touchstart", function(event) {
+	console.log(event.target);
 	event.preventDefault();
 	event.target.style.transform = 'scale(0.95)';
 	event.target.style.webkitTransform = 'scale(0.95)';
@@ -17,9 +18,11 @@ $("div.button").bind("touchend", function(event) {
 	event.target.style.background = 'blue';
 	select(lv);
 })
-$("div.button").bind("touchmove", function(event) {
-	console.log(event.clientX);
-})
 function select(lv) {
 
 }
+document.addEventListener("touchmove", function(event) {
+	console.log(event.changedTouches[0].clientX);
+	if(event.target.className == 'button') event.target.style.transform = 'scale(1)';
+})
+
