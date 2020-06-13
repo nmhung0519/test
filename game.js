@@ -1,4 +1,5 @@
-var container = document.getElementById('menu')
+var container = document.getElementsByClassName('container');
+var header = document.getElementsByClassName('header');
 var buttons = document.getElementsByClassName('button');
 $("div.button").bind("mousedown", function(event) {
 	console.log(event.target);
@@ -17,8 +18,14 @@ function select(lv) {
 	var _header = document.createElement("div");
 	_header.style.background = 'blue';
 	_header.className = 'header';
+	_header.style.animationName = 'enter';
+	_header.style.animationDuration = '1s';
+	_container.style.animationName = 'enter';
+	_container.style.animationDuration = '1s';
 	mainPack.appendChild(_container);
 	mainPack.appendChild(_header);
-	buttons[0].style.animationName = 'hide';
+	display.appendChild(mainPack);
+	container[0].style.animationName = 'hide';
+	header[0].style.animationName = 'hide';
 	console.log(document.getElementById('menu'));
 }
