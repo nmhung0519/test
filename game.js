@@ -1,28 +1,27 @@
-var container = document.getElementById("container");
+var container = document.getElementById('menu')
 var buttons = document.getElementsByClassName('button');
 $(document).taphold(function(event) {
 	
 });
-$("div.button").bind("touchstart", function(event) {
+$("div.button").bind("mousedown", function(event) {
 	console.log(event.target);
 	event.preventDefault();
-	event.target.style.transform = 'scale(0.95)';
-	event.target.style.webkitTransform = 'scale(0.95)';
 })
-$("div.button").bind("touchend", function(event) {
+$("div.button").bind("mouseup", function(event) {
 	event.preventDefault();
 	let lv = event.target.id;
-	console.log(lv);
-	event.target.style.transform = 'scale(0.95)';
-	event.target.style.webkitTransform = 'scale(0.95)';
-	event.target.style.background = 'blue';
 	select(lv);
+	console.log($(this).parent());
 })
 function select(lv) {
-
+	var mainPack = document.createElement("div");
+	var _container = document.createElement("div");
+	_container.className = 'container';
+	var _header = document.createElement("div");
+	_header.style.background = 'blue';
+	_header.className = 'header';
+	mainPack.appendChild(_container);
+	mainPack.appendChild(_header);
+	buttons[0].style.animationName = 'hide';
+	console.log(document.getElementById('menu'));
 }
-document.addEventListener("touchmove", function(event) {
-	console.log(event.changedTouches[0].clientX);
-	if(event.target.className == 'button') event.target.style.transform = 'scale(1)';
-})
-
