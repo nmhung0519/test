@@ -1,8 +1,5 @@
 var container = document.getElementById('menu')
 var buttons = document.getElementsByClassName('button');
-$(document).taphold(function(event) {
-	
-});
 $("div.button").bind("mousedown", function(event) {
 	console.log(event.target);
 	event.preventDefault();
