@@ -1,31 +1,69 @@
-var container = document.getElementsByClassName('container');
-var header = document.getElementsByClassName('header');
 var buttons = document.getElementsByClassName('button');
+var menu = document.getElementById('menu');
+var pre = 0;
+var canClick = 1;
+var a = new Audio('E:/Music/Simple love - obito (W-n Remix) , Cover Duongg , Tien.mp3');
 $("div.button").bind("mousedown", function(event) {
 	console.log(event.target);
 	event.preventDefault();
 })
-$("div.button").bind("mouseup", function(event) {
+$("div.back").bind("mouseup", function(event) {
 	event.preventDefault();
-	let lv = event.target.id;
-	select(lv);
-	console.log($(this).parent());
+
+})
+addEventListener("mouseup", function(event) {
+	if (canClick == 1) {
+		var target = event.target;
+		console.log(event.target);
+		if (target.className == 'button') {
+			a.play();
+			let lv = target.id;
+			canClick = 0;
+			select(lv);
+		}
+		else if (target.className == 'back') {
+			canClick = 0;
+			_back(pre);
+		}
+	}
 })
 function select(lv) {
-	var mainPack = document.createElement("div");
-	var _container = document.createElement("div");
-	_container.className = 'container';
-	var _header = document.createElement("div");
-	_header.style.background = 'blue';
-	_header.className = 'header';
-	_header.style.animationName = 'enter';
-	_header.style.animationDuration = '1s';
-	_container.style.animationName = 'enter';
-	_container.style.animationDuration = '1s';
-	mainPack.appendChild(_container);
-	mainPack.appendChild(_header);
-	display.appendChild(mainPack);
-	container[0].style.animationName = 'hide';
-	header[0].style.animationName = 'hide';
-	console.log(document.getElementById('menu'));
+	var container_pre = document.getElementsByClassName("container")[0];
+	var header_pre = document.getElementsByClassName("header")[0];
+	menu.appendChild(container[lv]);
+	container[lv].style.animationName = 'enter';
+	header[lv].style.animationName = 'enter';
+	menu.appendChild(header[lv]);
+	container_pre.style.animationName = 'hide';
+	header_pre.style.animationName = 'hide';
+	setTimeout(function() {
+		container_pre.style.display = 'none';
+		header_pre.style.display = 'none';
+		canClick = 1;
+		console.log(canClick);
+	}, 1000);
+}
+function _back() {
+	console.log("back");
+	var container_pre = document.getElementsByClassName("container")[1];
+	var header_pre = document.getElementsByClassName("header")[1];
+	container_pre.style.animationName = 'back';
+	header_pre.style.animationName = 'back';
+	container[0].style.display = 'block';
+	header[0].style.display = 'block';
+	//menu.appendChild(container[0]);
+	//menu.appendChild(header[0]);
+	container[0].style.animationName = 'unhide';
+	header[0].style.animationName = 'unhide';
+	setTimeout(function() {
+		menu.removeChild(container_pre);
+		menu.removeChild(header_pre);
+		canClick = 1;
+		console.log(canClick);
+	}, 1000);
+}
+function start() {
+	menu.appendChild(container[0]);
+	menu.appendChild(header[0]);
+	console.log("check");
 }

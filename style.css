@@ -19,13 +19,12 @@ div.header {
 	top: 0;
 	left: 0;
 	text-align: center;
-	background: #FF7424;
 	animation-duration: 1s;
 	box-shadow: 0 0 5px 2px dimgrey;
 	position: fixed;
 }
 span.title {
-	top: 15%;
+	margin-top: -50%;
 	font-size: 200%;
 	color: white;
 	font-family: verdana;
@@ -48,7 +47,7 @@ div.button:hover {
 	transform: scale(0.98);
 	-webkit-transform: scale(0.98);
 }
-#setting {
+div.setting {
 	width: 40px;
 	height: 40px;
 	left: 1%;
@@ -56,12 +55,25 @@ div.button:hover {
 	background-image: url('png/setting.png');
 	background-size: cover; 
 	cursor: pointer;
-	position: inherit;
+	position: relative;
+}
+div.back {
+	width: 40px;
+	height: 40px;
+	left: 1%;
+	top: 1%;
+	background-image: url('png/back.png');
+	background-size: cover; 
+	cursor: pointer;
+	position: relative;
 }
 div.picture {
 	width: 40%;
 	height: initial;
 	outline: 5px solid white;
+}
+#frame {
+	outline: 5 solid gold;
 }
 @keyframes enter {
 	from {left: 100%;}
