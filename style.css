@@ -3,12 +3,13 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -o-user-select: none;
     user-select: none;
+	font-family: Verdana;
 }
 div.container {
 	width: 100%;
 	height: 100%;
+	left: 0%;
 	background: #FFF4C3;
 	animation-duration: 1s;
 	position: fixed;
@@ -27,21 +28,23 @@ span.title {
 	margin-top: -50%;
 	font-size: 200%;
 	color: white;
-	font-family: verdana;
 	position: relative;
 }
 div.button {
 	font-size: 200%;
 	width: 80%;
+	max-width: 800px;
 	height: 12%;
-	left: 10%;
+	min-height: 50px;
+	margin: 1% auto 0 auto;
+	top: 10%;
 	background: green;
 	border-radius: 10px;
 	transition: 0.8s;
 	cursor: pointer;
 	animation-duration: 1s;
 	-webkit-transition: 0.8s;
-	position: absolute;
+	position: relative;
 }
 div.button:hover {
 	transform: scale(0.98);
@@ -68,12 +71,20 @@ div.back {
 	position: relative;
 }
 div.picture {
-	width: 40%;
-	height: initial;
+	width: 100px;
+	height: 100px;
 	outline: 5px solid white;
+	cursor: pointer;
+	box-shadow: 0 0 5px 4px dimgrey;
+	position: relative;
 }
 #frame {
-	outline: 5 solid gold;
+	width: 960px;
+	height: 540px;
+	margin: 1% auto 0 auto;
+	top: 10%;
+	outline: 5px solid gold;
+	position: relative;
 }
 @keyframes enter {
 	from {left: 100%;}

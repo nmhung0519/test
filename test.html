@@ -27,14 +27,14 @@
         addEventListener("mouseup", function (t) {
             if(target != null) target.style.transform = 'scale(1)';
             removeEventListener("mousemove", check);
-            console.log(target.style.left, target.style.top);
+            if (target != null) console.log(target.style.left, target.style.top);
             target = null;
         })
         function check(event) {
             if (target == null) {
                 if (event.screenX != x) {
-                    directtion = 1;
                     select(event.target);
+                    direction = 1;
                 }
                 else {
                     select(event.target)
@@ -44,12 +44,17 @@
             else {
                 //console.log(direction);
                 if (direction == 1) {
-                    
+                    if (event.screenX != x) {
+                        var tmp = tmpX + (event.screenX - x);
+                        if (tmp < 0) tmp = 0;
+                        target.style.left = tmp + "px";
+                    }
                 }
                 else if (direction == 2) {
                     if (event.screenY != y) {
-                        //console.log((target));
-                        target.style.top = tmpY + (event.screenY - y) + "px";
+                        var tmp = tmpY + (event.screenY - y);
+                        if (tmp < 0) tmp = 0;
+                        target.style.top = tmp + "px";
                     }
                 }
             }

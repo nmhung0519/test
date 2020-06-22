@@ -3,14 +3,6 @@ var menu = document.getElementById('menu');
 var pre = 0;
 var canClick = 1;
 var a = new Audio('E:/Music/Simple love - obito (W-n Remix) , Cover Duongg , Tien.mp3');
-$("div.button").bind("mousedown", function(event) {
-	console.log(event.target);
-	event.preventDefault();
-})
-$("div.back").bind("mouseup", function(event) {
-	event.preventDefault();
-
-})
 addEventListener("mouseup", function(event) {
 	if (canClick == 1) {
 		var target = event.target;
@@ -25,6 +17,10 @@ addEventListener("mouseup", function(event) {
 			canClick = 0;
 			_back(pre);
 		}
+		if (target.className == 'picture') {
+			canClick = 0;
+			play(target);
+        }
 	}
 })
 function select(lv) {
@@ -36,34 +32,48 @@ function select(lv) {
 	menu.appendChild(header[lv]);
 	container_pre.style.animationName = 'hide';
 	header_pre.style.animationName = 'hide';
-	setTimeout(function() {
+	setTimeout(function () {
 		container_pre.style.display = 'none';
 		header_pre.style.display = 'none';
 		canClick = 1;
-		console.log(canClick);
 	}, 1000);
 }
 function _back() {
-	console.log("back");
-	var container_pre = document.getElementsByClassName("container")[1];
-	var header_pre = document.getElementsByClassName("header")[1];
-	container_pre.style.animationName = 'back';
-	header_pre.style.animationName = 'back';
-	container[0].style.display = 'block';
-	header[0].style.display = 'block';
+	var container_pre = document.getElementsByClassName("container");
+	var header_pre = document.getElementsByClassName("header");
+	var n = container_pre.length;
+	container_pre[n-1].style.animationName = 'back';
+	header_pre[n-1].style.animationName = 'back';
+	container[n-2].style.display = 'block';
+	header[n-2].style.display = 'block';
 	//menu.appendChild(container[0]);
 	//menu.appendChild(header[0]);
-	container[0].style.animationName = 'unhide';
-	header[0].style.animationName = 'unhide';
+	container_pre[n-2].style.animationName = 'unhide';
+	header[n-2].style.animationName = 'unhide';
 	setTimeout(function() {
-		menu.removeChild(container_pre);
-		menu.removeChild(header_pre);
+		menu.removeChild(container_pre[n-1]);
+		menu.removeChild(header_pre[n-1]);
 		canClick = 1;
-		console.log(canClick);
 	}, 1000);
 }
 function start() {
 	menu.appendChild(container[0]);
 	menu.appendChild(header[0]);
 	console.log("check");
+}
+function play(target) {
+	var container_pre = document.getElementsByClassName("container")[1];
+	var header_pre = document.getElementsByClassName("header")[1];
+	console.log(container_pre);
+	container_pre.style.animationName = 'hide';
+	header_pre.style.animationName = 'hide';
+	menu.appendChild(play_container);
+	menu.appendChild(play_header);
+	play_container.style.animationName = 'enter';
+	play_header.style.animationName = 'enter';
+	setTimeout(function () {
+		container_pre.style.display = 'none';
+		header_pre.style.display = 'none';
+		canClick = 1;
+	}, 1000);
 }

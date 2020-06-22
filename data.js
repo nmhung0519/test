@@ -20,35 +20,30 @@ header[0].appendChild(setting);
 var button_1 = document.createElement("div");
 button_1.id = '1';
 button_1.className = 'button';
-button_1.style.top = '10%';
 button_1.innerText = 'Main Pack';
 container[0].appendChild(button_1);
 //Button 2
 var button_2 = document.createElement("div");
 button_2.id = '2';
 button_2.className = 'button';
-button_2.style.top = '25%';
 button_2.innerText = 'Famous Paintings';
 container[0].appendChild(button_2);
 //Button 3
 var button_3 = document.createElement("div");
 button_3.id = '3';
 button_3.className = 'button';
-button_3.style.top = '40%';
 button_3.innerText = 'Animals';
 container[0].appendChild(button_3);
 //Button 4
 var button_4 = document.createElement("div");
 button_4.id = '4';
 button_4.className = 'button';
-button_4.style.top = '55%';
 button_4.innerText = 'Portraits';
 container[0].appendChild(button_4);
 //Button 5
 var button_5 = document.createElement("div");
 button_5.id = '5';
 button_5.className = 'button';
-button_5.style.top = '70%';
 button_5.innerText = 'Landmarks';
 container[0].appendChild(button_5);
 
@@ -131,3 +126,29 @@ title[5] = document.createElement("span");
 title[5].innerText = 'Portraits';
 title[5].className = 'title';
 header[5].appendChild(title[5]);
+
+var pic = document.createElement("div");
+pic.className = 'picture';
+container[1].appendChild(pic);
+pic.style.top = '10%';
+pic.style.left = '10%';
+pic.style.background = 'url("picture/1-01.jpg")';
+pic.id = '1-01';
+pic.style.backgroundSize = 'cover';
+var pic2 = document.createElement("div");
+pic2.className = 'picture';
+container[1].appendChild(pic2);
+pic2.style.top = '-25px'
+pic2.style.left = '250px';
+
+var play_container = document.createElement("div");
+play_container.className = "container";
+var play_header = document.createElement("div");
+play_header.className = "header";
+play_header.style.background = 'pink';
+var play_back = document.createElement("div");
+play_back.className = "back";
+play_header.appendChild(play_back);
+var frame = document.createElement("div");
+frame.id = 'frame';
+play_container.appendChild(frame);
