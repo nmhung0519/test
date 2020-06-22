@@ -11,7 +11,7 @@ div.container {
 	height: 100%;
 	left: 0%;
 	background: #FFF4C3;
-	animation-duration: 1s;
+	animation-duration: 0.8s;;
 	position: fixed;
 }
 div.header {
@@ -20,7 +20,7 @@ div.header {
 	top: 0;
 	left: 0;
 	text-align: center;
-	animation-duration: 1s;
+	animation-duration: 0.8s;;
 	box-shadow: 0 0 5px 2px dimgrey;
 	position: fixed;
 }
@@ -42,7 +42,7 @@ div.button {
 	border-radius: 10px;
 	transition: 0.8s;
 	cursor: pointer;
-	animation-duration: 1s;
+	animation-duration: 0.8s;;
 	-webkit-transition: 0.8s;
 	position: relative;
 }
@@ -53,7 +53,6 @@ div.button:hover {
 div.setting {
 	width: 40px;
 	height: 40px;
-	left: 1%;
 	top: 1%;
 	background-image: url('png/setting.png');
 	background-size: cover; 
@@ -74,6 +73,8 @@ div.picture {
 	width: 100px;
 	height: 100px;
 	outline: 5px solid white;
+	margin: 0 auto -110px auto;
+	top: 10%;
 	cursor: pointer;
 	box-shadow: 0 0 5px 4px dimgrey;
 	position: relative;
