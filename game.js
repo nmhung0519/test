@@ -83,7 +83,7 @@ function _back() {
 	container_pre[n-1].style.animationName = 'back';
 	header_pre[n].style.animationName = 'back';
 	container_pre[n-2].style.display = 'block';
-	header_pre[n].style.display = 'block';
+	header_pre[n-1].style.display = 'block';
 	container_pre[n-2].style.animationName = 'unhide';
 	header_pre[n-1].style.animationName = 'unhide';
 	setTimeout(function() {
@@ -104,7 +104,7 @@ function play(target) {
 	newGame();
 	var data = game[index];
 	var container_pre = document.getElementsByClassName("container")[1];
-	var header_pre = document.getElementsByClassName("header")[1];
+	var header_pre = document.getElementsByClassName("header")[2];
 	container_pre.style.animationName = 'hide';
 	header_pre.style.animationName = 'hide';
 	menu.appendChild(play_container);
