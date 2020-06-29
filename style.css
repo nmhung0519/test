@@ -9,23 +9,37 @@ body {
 div.container {
 	width: 100%;
 	height: 100%;
+	min-height: 500px;
 	left: 0%;
 	background: #FFF4C3;
 	animation-duration: 0.8s;
+	box-shadow: 0 0 5px 2px dimgrey;
+	transition: 0.8s;
 	position: fixed;
 }
 div.header {
 	width: 100%;
-	height: 8%;
+	height: 60px;
 	top: 0;
 	left: 0;
 	text-align: center;
 	animation-duration: 0.8s;
+	transition: 0.8s;
 	box-shadow: 0 0 5px 2px dimgrey;
 	position: fixed;
 }
+#footer {
+	width: 100%;
+	height: 60px;
+	bottom: -60px;
+	left: 0px;
+	transition: 0.8s;
+	box-shadow: 0 0 5px 2px dimgrey;
+	z-index: 9998;
+	position: fixed;
+}
 span.title {
-	margin-top: -50%;
+	top: 10px;
 	font-size: 200%;
 	color: white;
 	position: relative;
@@ -42,32 +56,35 @@ div.button {
 	border-radius: 10px;
 	transition: 0.8s;
 	cursor: pointer;
-	animation-duration: 0.8s;;
+	animation-duration: 0.8s;
 	-webkit-transition: 0.8s;
+	opacity: 0.9;
 	position: relative;
 }
 div.button:hover {
 	transform: scale(0.98);
 	-webkit-transform: scale(0.98);
+	opacity: 1;
 }
 div.setting {
 	width: 40px;
 	height: 40px;
-	top: 1%;
+	top: 10px;
+	left: 2%;
 	background-image: url('png/setting.png');
 	background-size: cover; 
 	cursor: pointer;
-	position: relative;
+	position: absolute;
 }
 div.back {
 	width: 40px;
 	height: 40px;
-	left: 1%;
-	top: 1%;
+	left: 2%;
+	top: 10px;
 	background-image: url('png/back.png');
 	background-size: cover; 
 	cursor: pointer;
-	position: relative;
+	position: absolute;
 }
 div.sound {
 	width: 22px;
@@ -82,7 +99,7 @@ div.picture {
 	height: 100px;
 	outline: 5px solid white;
 	margin: 0 auto -110px auto;
-	top: 10%;
+	top: 12%;
 	cursor: pointer;
 	box-shadow: 0 0 5px 4px dimgrey;
 	position: relative;
@@ -92,7 +109,6 @@ div.picture {
 	height: 540px;
 	margin: 1% auto 0 auto;
 	top: 10%;
-	outline: 5px solid gold;
 	position: relative;
 }
 #check-button {
@@ -108,7 +124,23 @@ div.picture {
 	background: white;
 	position: absolute;
 }
-
+#next-button {
+	width: 200px;
+	height: 40px;
+	top: 10px;
+	margin: 0 auto 0 auto;
+	background: blue;
+	border-radius: 50px;
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+}
+#next-text {
+	top: 8px;
+	font-family:Verdana;
+	font-size: 18px;
+	position: relative;
+}
 #frame-check-button {
 	width: 60px;
 	height: 26px;
@@ -123,6 +155,28 @@ span.text {
 	font-size: 20px;
 	left: 30px;
 	position: absolute;
+}
+#game-over {
+	left: 0;
+	width: 100%;
+	top: 0;
+	height: 100%;
+	z-index: 9999;
+	opacity: 0.5;
+	background: grey;
+	display: none;
+	position: absolute;
+}
+#restart-button {
+	width: 200px;
+	height: 100px;
+	top: -50%;
+	background: blue;
+	margin: 1% auto 0 auto;
+	cursor: pointer;
+	display: none;
+	z-index: 10000;
+	position: relative;
 }
 @keyframes enter {
 	from {left: 100%;}

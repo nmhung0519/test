@@ -1,5 +1,8 @@
 var buttons = document.getElementsByClassName('button');
 var menu = document.getElementById('menu');
+var footer = document.getElementById('footer');
+var nextButton = document.getElementById('next-button');
+var nextText = document.getElementById('next-text');
 var x, y;
 var tmpX, tmpY;
 var target = null;
@@ -8,12 +11,15 @@ var canClick = 1;
 var sound = new Audio('sound/click.mp3');
 var mute = false;
 var pieces;
-var n;	// number of rows
-var m;	// number of columns
+var n;	// So dong
+var m;	// So cot
 var start, end;
 const frameWidth = 960;
 const frameHeight = 540;
+var temp;
 var count;
+var rightCol;
+var rightRow;
 addEventListener("mouseup", function(event) {
 	if (canClick == 1) {
 		var target = event.target;
@@ -40,14 +46,16 @@ addEventListener("mouseup", function(event) {
         }
 	}
 })
-addEventListener("mousedown", function (event) {
-	if (event.target.classname == 'piece') {
-		
-    }
-})
+
+//Khi bam vao 1 nut
 function select(lv) {
 	var container_pre = document.getElementsByClassName("container");
 	var header_pre = document.getElementsByClassName("header");
+	if (lv == -1) {
+		container[-1].style.background = container_pre[container_pre.length - 1].style.background;
+		header[-1].style.background = header_pre[header_pre.length - 1].style.background;
+		if (!mute) sound_frame.style.background = header[-1].style.background;
+    }
 	container_pre = container_pre[container_pre.length - 1];
 	header_pre = header_pre[header_pre.length - 1];
 	menu.appendChild(container[lv]);
@@ -62,10 +70,13 @@ function select(lv) {
 		canClick = 1;
 	}, 800);
 }
+
+//Khi bam nut quay lai
 function _back() {
 	var container_pre = document.getElementsByClassName("container");
 	var header_pre = document.getElementsByClassName("header");
 	var n = container_pre.length;
+	if (n == 3) footer.style.bottom = '-60px';
 	container_pre[n-1].style.animationName = 'back';
 	header_pre[n-1].style.animationName = 'back';
 	container_pre[n-2].style.display = 'block';
@@ -83,7 +94,13 @@ function start() {
 	menu.appendChild(container[0]);
 	menu.appendChild(header[0]);
 }
+
+//Khi chon man choi - Bat dau choi
 function play(target) {
+	rightCol = false;
+	rightRow = false;
+	footer.style.bottom = '-60px';
+	play_title.innerText = "";
 	if (pieces != null) newFrame();
 	var container_pre = document.getElementsByClassName("container")[1];
 	var header_pre = document.getElementsByClassName("header")[1];
@@ -93,16 +110,24 @@ function play(target) {
 	menu.appendChild(play_header);
 	play_container.style.animationName = 'enter';
 	play_header.style.animationName = 'enter';
-	pieces = null;
+	play_header.style.background = target.getAttribute('headerColor');
+	footer.style.background = target.getAttribute('headerColor');
+	nextText.style.color = target.getAttribute('headerColor');
+	nextButton.style.background = target.getAttribute('background');
+	play_container.style.background = target.getAttribute('background');
+	game_over.style.display = 'none';
+	restart_button.style.display = 'none';
 	setTimeout(function () {
 		container_pre.style.display = 'none';
 		header_pre.style.display = 'none';
 		canClick = 1;
 		n = 3;
 		m = 4;
-		createImage('picture/1-01.jpg', 1, 1);
+		createImage('picture/1-01.jpg', 1, 1, 7);
 	}, 800);
 }
+
+//Luu vi tri con tro chuot khi bam chuot vao manh ghep
 addEventListener("mousedown", function (event) {
 	if (event.target.className == 'piece') {
 		addEventListener("mousemove", move);
@@ -110,28 +135,50 @@ addEventListener("mousedown", function (event) {
 		y = event.screenY;
 	}
 })
-addEventListener("mouseup", function (t) {
+
+//Tha manh ghep
+addEventListener("mouseup", function () {
 	if (target != null) {
 		for (var i = 0; target[i] != null; i++) {
 			target[i].style.transform = 'scale(1)';
 			target[i].style.left = '0px';
 			target[i].style.top = '0px';
 			target[i] = null;
-        }
+		}
+		if (temp) {
+			count--;
+			play_title.innerText = "Moves:" + count;
+			if (direction == 1) {
+				rightCol = true;
+				for (var i = 0; i < m; i++) if (pieces[0][i].children[0].getAttribute('y') != i) rightCol = false;
+			}
+			else if (direction == 2) {
+				rightRow = true;
+				for (var i = 0; i < n; i++) if (pieces[i][0].children[0].getAttribute('x') != i) rightRow = false;
+			}
+			if (rightRow && rightCol) win();
+			else if (count == 0) gameOver();
+		}
 	}
 	removeEventListener("mousemove", move);
 	target = null;
 	direction = 0;
 })
+
+//Di chuyen manh ghep
 function move(event) {
 	if (target == null && direction == 0) {
 		if (event.screenX != x) {
-			direction = 1;
-			selectTarget(event.target);
+			if (!rightCol) {
+				direction = 1;
+				selectTarget(event.target);
+			}
 		}
-		else {
-			direction = 2;
-			selectTarget(event.target);
+		else if ( event.screenY) {
+			if (!rightRow) {
+				direction = 2;
+				selectTarget(event.target);
+			}
 		}
 	}
 	if (direction == 1) {
@@ -143,13 +190,12 @@ function move(event) {
 			var tmp = d / (frameWidth / m);
 			if (tmp < 0) tmp = parseInt(-(-tmp + 2 / 3));
 			else tmp = parseInt(tmp + 2 / 3);
-			if (tmp != count) {
+			if (tmp != temp) {
 				if (start + tmp >= 0 && end + tmp < m) {
-					swapCol(count, tmp, d);
-					count = tmp;
+					swapCol(temp, tmp, d);
+					temp = tmp;
                 } 
 			}
-
 		}
 	}
 	else if (direction == 2) {
@@ -161,10 +207,10 @@ function move(event) {
 			var tmp = d / (frameHeight / n);
 			if (tmp < 0) tmp = parseInt(-(-tmp + 2 / 3));
 			else tmp = parseInt(tmp + 2 / 3);
-			if (tmp != count) {
+			if (tmp != temp) {
 				if (start + tmp >= 0 && end + tmp < n) {
-					swapRow(count, tmp, d);
-					count = tmp;
+					swapRow(temp, tmp, d);
+					temp = tmp;
                 }
             }
 		}
@@ -213,7 +259,7 @@ function moveCol(a, b) {
 	for (var i = 0; i < n; i++) moveImg(i, a, i, b);
 }
 function selectTarget(_target) {
-	count = 0;
+	temp = 0;
 	if (direction == 1) {
 		tmpX = new Array();
 		target = new Array();
@@ -271,8 +317,10 @@ function selectTarget(_target) {
         }
 	}
 }
-function createImage(file, a, b) {
+function createImage(path, a, b, _count) {
 	pieces = new Array();
+	count = _count;
+	play_title.innerText = "Moves:" + count;
 	for (var i = 0; i < n; i++) {
 		pieces[i] = new Array();
 		for (var j = 0; j < m; j++) {
@@ -285,17 +333,17 @@ function createImage(file, a, b) {
 			tmp.className = 'piece';
 			tmp.style.width = 960 / m + "px";
 			tmp.style.height = 540 / n + "px";
-			tmp.style.background = 'url(' + file + ')';
+			tmp.style.background = 'url(' + path + ')';
 			tmp.style.backgroundPositionX = -(j * (frameWidth / m)) + "px";
 			tmp.style.backgroundPositionY = -(i * (frameHeight / n)) + 'px';
 			tmp.style.position = 'absolute';
 			tmp.setAttribute('x', i);
 			tmp.setAttribute('y', j);
 			pieces[i][j].appendChild(tmp);
-
 		}
 	}
 	mixImage(a, b);
+	frame.style.boxShadow = '0 0 5px 4px dimgrey';
 }
 function mixImage(a, b) {
 	for (var i = 0; i < a; i++) {
@@ -330,8 +378,7 @@ function newFrame() {
 		tmp2 = m;
 	}
 	pieces = null;
-	n = 0;
-	m = 0;
+	frame.style.boxShadow = '';
 }
 function moveImg(n1, m1, n2, m2) {
 	pieces[n2][m2].appendChild(pieces[n1][m1].children[0]);
@@ -346,14 +393,35 @@ function randomInt(a) {
 	return Math.floor(Math.random() * a);
 }
 sound_button.onclick = function (event) {
-	console.log(event.target);
 	mute = !mute;
 	if (mute) {
 		event.target.parentElement.style.background = 'grey';
 		event.target.style.left = "0px";
 	}
 	else {
-		event.target.parentElement.style.background = '#FF7424';
+		event.target.parentElement.style.background = header[-1].style.background;
 		event.target.style.left = "34px";
 	}
+}
+
+function gameOver() {
+	game_over.style.display = 'block';
+	restart_button.style.display = 'block';
+}
+restart_button.onclick = function () {
+	game_over.style.display = 'none';
+	restart_button.style.display = 'none';
+	restart();
+};
+function restart() {
+	newFrame();
+	pieces = null;
+	createImage('picture/1-01.jpg', 1, 1, 7);
+}
+function win() {
+	play_title.innerText = 'Congratulations!';
+	footer.style.bottom = '0';
+};
+nextButton.onclick = function () {
+
 }
