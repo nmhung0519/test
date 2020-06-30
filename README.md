@@ -1,5 +1,4 @@
 # Jigsaw Puzzle 3
-<br><br>
 ## I.Hướng dẫn:
 ### 1.Màn hình chính:
 ![a](https://i.ibb.co/Z6MmwQp/Untitled.png)
