@@ -1,15 +1,15 @@
-#Jigsaw Puzzle 3
+# Jigsaw Puzzle 3
 <br><br>
-##Hướng dẫn:
-###Màn hình chính:
+## Hướng dẫn:
+### Màn hình chính:
 ![a](https://i.ibb.co/Z6MmwQp/Untitled.png)
 * Màn hình chính hiển thị danh sách các bộ sưu tập ảnh
 
-###Bộ sưu tập ảnh
+### Bộ sưu tập ảnh
 ![a](https://i.ibb.co/Wfsjs8B/Untitled.png)
 * Sau khi chọn bộ sưu tập, danh sách người ảnh trong bộ sưu tập hiện ra, người chơi chọn ảnh trong bộ sưu tập để bắt đầu chơi
 
-###Màn hình chơi game
+### Màn hình chơi game
 ![a](https://i.ibb.co/Tb4T8KC/Untitled.png)
 * Người chơi cần di chuyển cách mảnh ghép theo hàng hoặc theo cột.
 * Các hàng hoặc cột cạnh nhau để đúng vị trí được di chuyển cùng lúc.
@@ -18,8 +18,8 @@
 * Ngược lại, khi lượt di chuyển trở về 0 mà bức hình vẫn chưa được hoàn thành, người chơi thất bại.
 <br><br>
 
-##Thêm dữ liệu
-###Thêm dữ liệu bộ sưu tập
+## Thêm dữ liệu
+### Thêm dữ liệu bộ sưu tập
 ![a](https://i.ibb.co/d4bJzkZ/Untitled.png)
 * Mở file 'data-button.js', thêm thông tin nút vào button:
 	* button[0] là thông tin về màn hình chính
@@ -30,7 +30,7 @@
 		* headerColor: Màu header trong bộ sưu tập
 		* butBackground: Nền của nút chọn bộ sưu tập
 
-###Thêm dữ liệu ảnh
+### Thêm dữ liệu ảnh
 ![a](https://i.ibb.co/XYzbJ6f/image.png)
 * Mở file 'data-game.js', thêm thông tin ảnh bào game:
 	* id: Id của ảnh gồm 3 chữ số:
