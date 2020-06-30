@@ -13,7 +13,9 @@ var tmpX, tmpY;
 var target = null;
 var direction = 0;
 var canClick = 1;
-var sound = new Audio('sound/click.mp3');
+var soundClick = new Audio('sound/click.mp3');
+var soundMove = new Audio('sound/move.mp3');
+var soundComplete = new Audio('sound/complete.mp3');
 var mute = false;
 var pieces;
 var n;	// So dong
@@ -41,6 +43,7 @@ for (var i = 1; i < button.length; i++) {
 loadPic();
 container[-1] = createContainer();
 header[-1] = createHeader();
+header[-1].appendChild(createTitle('Settings'));
 header[-1].appendChild(createBack());
 
 //play
@@ -50,7 +53,10 @@ var play_title = createTitle();
 var play_setting = document.createElement("div");
 var refresh = document.createElement("div");
 refresh.id = 'refresh';
-refresh.onclick = function () { restart(); };
+refresh.onclick = function () {
+	if (!mute) soundClick.play();
+	restart();
+};
 play_header.appendChild(refresh);
 play_setting.className = 'setting';
 play_setting.style.right = "2%";
@@ -78,6 +84,7 @@ restart_button.id = 'restart-button';
 play_container.appendChild(game_over);
 play_container.appendChild(restart_button);
 restart_click.onclick = function () {
+	if (!mute) soundClick.play();
 	game_over.style.display = 'none';
 	restart_button.style.display = 'none';
 	restart();
@@ -125,23 +132,23 @@ addEventListener("mouseup", function(event) {
 	if (canClick == 1) {
 		var target = event.target;
 		if (target.className == 'button') {
-			if (!mute) sound.play();
+			if (!mute) soundClick.play();
 			let lv = target.id;
 			canClick = 0;
 			select(lv);
 		}
 		else if (target.className == 'back') {
-			if (!mute) sound.play();
+			if (!mute) soundClick.play();
 			canClick = 0;
 			_back();
 		}
 		else if (target.className == 'picture') {
-			if (!mute) sound.play();
+			if (!mute) soundClick.play();
 			canClick = 0;
 			play(target);
 		}
 		else if (target.className == "setting") {
-			if (!mute) sound.play();
+			if (!mute) soundClick.play();
 			canClick = 0;
 			select(-1);
         }
@@ -246,9 +253,14 @@ addEventListener("mouseup", function () {
 				rightRow = true;
 				for (var i = 0; i < n; i++) if (pieces[i][0].children[0].getAttribute('x') != i) rightRow = false;
 			}
-			if (rightRow && rightCol) win();
+			if (rightRow && rightCol) {
+				win();
+				soundComplete.play();
+			}
 			else if (count == 0) gameOver();
+			else soundMove.play();
 		}
+		else soundMove.play();
 	}
 	removeEventListener("mousemove", move);
 	target = null;
@@ -511,6 +523,7 @@ function win() {
 	footer.style.bottom = '0';
 };
 nextButton.onclick = function () {
+	if (!mute) soundClick.play();
 	canClick = 0;
 	console.log(index + 1, game.length);
 	if (index +1 < game.length) nextLV();
