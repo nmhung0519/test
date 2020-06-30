@@ -31,7 +31,7 @@ var button = [
         'butBackground': 'green'
     }, {
         'name': 'Landmarks',
-        'headerColor': 'blue';
+        'headerColor': 'blue',
         'butBackground': 'green'
     }
 ]
