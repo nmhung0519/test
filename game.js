@@ -254,8 +254,11 @@ addEventListener("mouseup", function () {
 				for (var i = 0; i < n; i++) if (pieces[i][0].children[0].getAttribute('x') != i) rightRow = false;
 			}
 			if (rightRow && rightCol) {
-				win();
 				soundComplete.play();
+				if (index + 1 == game.length) nextText.innerText = "Home";
+				console.log(nextText);
+				win();
+
 			}
 			else if (count == 0) gameOver();
 			else soundMove.play();
@@ -526,7 +529,17 @@ nextButton.onclick = function () {
 	if (!mute) soundClick.play();
 	canClick = 0;
 	console.log(index + 1, game.length);
-	if (index +1 < game.length) nextLV();
+	if (index + 1 < game.length) nextLV();
+	else {
+		var container_pre = document.getElementsByClassName("container");
+		var header_pre = document.getElementsByClassName("header");
+		menu.removeChild(container_pre[container_pre.length - 2]);
+		menu.removeChild(header_pre[header_pre.length - 2]);
+		congrat.style.top = '-60px';
+		footer.style.bottom = '-60px';
+		console.log(congrat);
+		_back();
+    }
 }
 function newGame() {
 	var data = game[index];
