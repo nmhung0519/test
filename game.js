@@ -254,15 +254,15 @@ addEventListener("mouseup", function () {
 				for (var i = 0; i < n; i++) if (pieces[i][0].children[0].getAttribute('x') != i) rightRow = false;
 			}
 			if (rightRow && rightCol) {
-				soundComplete.play();
+				if (!mute) soundComplete.play();
 				if (index + 1 == game.length) nextText.innerText = "Home";
 				win();
 
 			}
 			else if (count == 0) gameOver();
-			else soundMove.play();
+			else if (!mute) soundMove.play();
 		}
-		else soundMove.play();
+		else if (!mute) soundMove.play();
 	}
 	removeEventListener("mousemove", move);
 	target = null;
